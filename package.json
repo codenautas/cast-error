@@ -1,8 +1,8 @@
 {
-    "name": "errores",
-    "description": "typed error (for TypeScript)",
-    "version": "0.0.1",
-    "repository": "codenautas/errores",
+    "name": "cast-error",
+    "description": "cast Error for use in TypeScript in catch clausule",
+    "version": "0.0.3",
+    "repository": "codenautas/cast-error",
     "files": [
         "../lib"
     ],
@@ -10,12 +10,47 @@
     "types": "lib/t-error.ts",
     "scripts": {
         "prepare": "tsc -p src",
-        "test": "tsc -p src && tsc -p test && mocha test-bild-local/test"
+        "test": "tsc -p src && tsc -p test && nyc mocha test-bild-local/test"
     },
-    "devDependencies": {
+    "nyc":{
+        "exclude":[
+            "test-bild-local"
+        ],
+        "reporter": [
+            "html",
+            "lcov",
+            "text-summary"
+        ]
+    },
+    "x-nyc": {
+        "extension": [
+          ".js"
+        ],
+        "exclude": [
+          "**/*.d.ts",
+          "src/test"
+        ],
+        "include": [
+          "lib/*.js"
+        ],
+        "x-require": [
+          "ts-node/register"
+        ],
+        "reporter": [
+          "html",
+          "lcov",
+          "text-summary"
+        ],
+        "sourceMap": true,
+        "instrument": true,
+        "all": true,
+        "check-coverage": true
+      },
+      "devDependencies": {
         "@types/node": "^16.10.3",
         "@types/mocha": "^9.0.0",
         "mocha": "^9.1.2",
+        "nyc": "^15.1.0",
         "typescript": "^4.4.3"
     }
 }

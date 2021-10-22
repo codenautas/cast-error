@@ -3,5 +3,6 @@ export declare class ExtendedError extends Error {
     code: string;
     constructor(message: string);
 }
+export declare function setLogFunction(f: typeof console.error): void;
 export declare function expected<T extends Error = ExtendedError>(err: unknown, constructor?: Constructor<T>): T;
 export declare function unexpected<T extends Error = ExtendedError>(err: unknown, constructor?: Constructor<T>): T;

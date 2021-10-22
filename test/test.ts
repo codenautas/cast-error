@@ -1,15 +1,88 @@
-import * as TError from "../lib/t-error";
+import * as castError from "../lib/t-error";
 import * as assert from "assert";
 import {promises as fs} from "fs";
 
-describe("t-error", function(){
+describe("cast-error", function(){
     it("detects error type",async function(){
         try{
             await fs.readFile("non-existent.txt");
             assert(false, "problem in the design of test. non-existent.txt must do not exists")
         }catch(err){
-            var error = TError.expected(err)
+            var error = castError.expected(err)
             assert.equal(error.code, "ENOENT")
+        }
+    })
+    var theLog: any[] = [];
+    before(()=>{
+        castError.setLogFunction((...args:any[])=>theLog.push(args));
+    })
+    beforeEach(()=>{
+        theLog = [];
+    })
+    it("warns unexpected error class", function(){
+        try{
+            // @ts-expect-error unexistent is not existent
+            var x = unexistent.prop;
+            assert(false, "problem in test. Reading prop of unexistent must throw error but get "+x)
+        }catch(err){
+            var error = castError.unexpected(err);
+            assert.equal(error.name, "ReferenceError");
+            assert.deepStrictEqual(theLog, [["unexpectedError", err]])
+        }
+    })
+    it("warns about different error class", function(){
+        try{
+            // @ts-expect-error unexistent is not existent
+            var x = unexistent.prop;
+            assert(false, "problem in test. Reading prop of unexistent must throw error but get "+x)
+        }catch(err){
+            var error = castError.expected(err, TypeError);
+            assert.equal(error.name, "ReferenceError");
+            assert.deepStrictEqual(theLog, [["not a \"TypeError\" in a catch:", err]])
+        }
+    })
+    it("warns about unexpected and different non error", function(){
+        try{
+            throw "message instead error";
+            assert(false, "problem in test. throw must throw error but get ")
+        }catch(err){
+            var error = castError.unexpected(err);
+            assert.equal(error.name, "Error");
+            assert.equal(error.message, "message instead error");
+            assert.deepStrictEqual(theLog, [["unexpectedError", err],["not an Error in a catch", err]])
+        }
+    })
+    it("warns about null error", function(){
+        try{
+            throw null;
+            assert(false, "problem in test. throw must throw error but get ")
+        }catch(err){
+            var error = castError.expected(err);
+            assert.equal(error.name, "Error");
+            assert.equal(error.message, "null error in catch");
+            assert.deepStrictEqual(theLog, [["not an Error in a catch", err]])
+        }
+    })
+    it("warns about duck typed error", function(){
+        try{
+            throw {message:'duck-typed error'};
+            assert(false, "problem in test. throw must throw error but get ")
+        }catch(err){
+            var error = castError.unexpected(err);
+            assert.equal(error.name, "Error");
+            assert.equal(error.message, 'duck-typed error');
+            assert.deepStrictEqual(theLog, [["unexpectedError", err],["not an Error in a catch", err]])
+        }
+    })
+    it("warns about other type of error", function(){
+        try{
+            throw 42;
+            assert(false, "problem in test. throw must throw error but get ")
+        }catch(err){
+            var error = castError.expected(err, castError.ExtendedError);
+            assert.equal(error.name, "ExtendedError");
+            assert.equal(error.message, '42');
+            assert.deepStrictEqual(theLog, [["not an Error in a catch", err]])
         }
     })
 })
