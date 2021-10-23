@@ -1,7 +1,7 @@
 {
     "name": "cast-error",
     "description": "cast Error for use in TypeScript in catch clausule",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "repository": "codenautas/cast-error",
     "files": [
         "../lib"
@@ -12,8 +12,8 @@
         "prepare": "tsc -p src",
         "test": "tsc -p src && tsc -p test && nyc mocha test-bild-local/test"
     },
-    "nyc":{
-        "exclude":[
+    "nyc": {
+        "exclude": [
             "test-bild-local"
         ],
         "reporter": [
@@ -24,29 +24,29 @@
     },
     "x-nyc": {
         "extension": [
-          ".js"
+            ".js"
         ],
         "exclude": [
-          "**/*.d.ts",
-          "src/test"
+            "**/*.d.ts",
+            "src/test"
         ],
         "include": [
-          "lib/*.js"
+            "lib/*.js"
         ],
         "x-require": [
-          "ts-node/register"
+            "ts-node/register"
         ],
         "reporter": [
-          "html",
-          "lcov",
-          "text-summary"
+            "html",
+            "lcov",
+            "text-summary"
         ],
         "sourceMap": true,
         "instrument": true,
         "all": true,
         "check-coverage": true
-      },
-      "devDependencies": {
+    },
+    "devDependencies": {
         "@types/node": "^16.10.3",
         "@types/mocha": "^9.0.0",
         "mocha": "^9.1.2",

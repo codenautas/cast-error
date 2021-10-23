@@ -1,10 +1,10 @@
 export type Constructor<T> = new(...args: any[]) => T;
 
-export class ExtendedError extends Error{
+export class SystemError extends Error{
     code:string
     constructor(message:string) {
         super(message)
-        this.name = 'ExtendedError';
+        this.name = 'SystemError';
         this.code = 'UNKNOWN';
     }
 }
@@ -15,7 +15,7 @@ export function setLogFunction(f:typeof console.error){
     logFunction = f;
 }
 
-export function expected<T extends Error = ExtendedError>(err:unknown, constructor?:Constructor<T>):T{
+export function expected<T extends Error = SystemError>(err:unknown, constructor?:Constructor<T>):T{
     if(err instanceof Error){ 
         if(constructor != null && !(err instanceof constructor)) logFunction(`not a "${constructor.name}" in a catch:`,err);
         return err as T;
@@ -31,7 +31,7 @@ export function expected<T extends Error = ExtendedError>(err:unknown, construct
     return new (constructor||Error)(message);
 }
 
-export function unexpected<T extends Error = ExtendedError>(err:unknown, constructor?:Constructor<T>):T{
+export function unexpected<T extends Error = SystemError>(err:unknown, constructor?:Constructor<T>):T{
     logFunction('unexpectedError',err);
     return expected(err, constructor);
 }

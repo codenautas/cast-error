@@ -79,8 +79,8 @@ describe("cast-error", function(){
             throw 42;
             assert(false, "problem in test. throw must throw error but get ")
         }catch(err){
-            var error = castError.expected(err, castError.ExtendedError);
-            assert.equal(error.name, "ExtendedError");
+            var error = castError.expected(err, castError.SystemError);
+            assert.equal(error.name, "SystemError");
             assert.equal(error.message, '42');
             assert.deepStrictEqual(theLog, [["not an Error in a catch", err]])
         }
