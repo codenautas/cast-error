@@ -60,8 +60,6 @@ try{
 ```
 
 
-## Main goal
-
 with **cast-error** you can write:
 
 

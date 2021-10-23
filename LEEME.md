@@ -102,8 +102,6 @@ con **cast-error** eso se puede escribir así:
 
 <!--lang:en--]
 
-## Main goal
-
 with **cast-error** you can write:
 
 [!--lang:*-->
