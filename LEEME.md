@@ -80,21 +80,7 @@ Instead of writing this:
 
 [!--lang:*-->
 
-```ts
-try{
-    somethingCanGoWrong();
-}catch(err){
-    console.error(err.message || err.toString());
-    throw err;
-}
-
-try{
-    await fsPromise.unlink('/tmp/aFile.txt');
-}catch(err){
-    // @ts-ignore
-    if(err.code!='ENOENT') throw err;
-}
-```
+![try{ somethingCanGoWrong(); }catch(err){ console.error(err.message || err.toString()); throw err; } try{ await fsPromise.unlink('/tmp/aFile.txt'); }catch(err){ if(err.code!='ENOENT') throw err; }](doc/catchjs.png)
 
 <!--lang:es-->
 

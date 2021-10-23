@@ -1,10 +1,11 @@
 {
     "name": "cast-error",
     "description": "cast Error for use in TypeScript in catch clausule",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "repository": "codenautas/cast-error",
     "files": [
-        "../lib"
+        "lib",
+        "doc"
     ],
     "main": "lib/t-error.js",
     "types": "lib/t-error.ts",

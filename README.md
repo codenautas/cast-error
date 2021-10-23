@@ -43,21 +43,7 @@ way.
 Instead of writing this:
 
 
-```ts
-try{
-    somethingCanGoWrong();
-}catch(err){
-    console.error(err.message || err.toString());
-    throw err;
-}
-
-try{
-    await fsPromise.unlink('/tmp/aFile.txt');
-}catch(err){
-    // @ts-ignore
-    if(err.code!='ENOENT') throw err;
-}
-```
+![try{ somethingCanGoWrong(); }catch(err){ console.error(err.message || err.toString()); throw err; } try{ await fsPromise.unlink('/tmp/aFile.txt'); }catch(err){ if(err.code!='ENOENT') throw err; }](doc/catchjs.png)
 
 
 with **cast-error** you can write:
