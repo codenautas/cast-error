@@ -1,4 +1,4 @@
-import * as castError from "../lib/t-error";
+import * as castError from "../lib/cast-error";
 import * as assert from "assert";
 import {promises as fs} from "fs";
 

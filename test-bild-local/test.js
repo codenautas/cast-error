@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var castError = require("../lib/t-error");
+var castError = require("../lib/cast-error");
 var assert = require("assert");
 var fs_1 = require("fs");
 describe("cast-error", function () {

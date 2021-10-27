@@ -1,14 +1,14 @@
 {
     "name": "cast-error",
     "description": "cast Error for use in TypeScript in catch clausule",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "repository": "codenautas/cast-error",
     "files": [
         "lib",
         "doc"
     ],
-    "main": "lib/t-error.js",
-    "types": "lib/t-error.ts",
+    "main": "lib/cast-error.js",
+    "types": "lib/cast-error.ts",
     "scripts": {
         "prepare": "tsc -p src",
         "test": "tsc -p src && tsc -p test && nyc mocha test-bild-local/test"
@@ -48,10 +48,10 @@
         "check-coverage": true
     },
     "devDependencies": {
-        "@types/node": "^16.10.3",
+        "@types/node": "^16.11.6",
         "@types/mocha": "^9.0.0",
-        "mocha": "^9.1.2",
+        "mocha": "^9.1.3",
         "nyc": "^15.1.0",
-        "typescript": "^4.4.3"
+        "typescript": "^4.4.4"
     }
 }

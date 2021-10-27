@@ -11,7 +11,7 @@ cast Error for use in TypeScript in catch clausule
 [!--lang:*-->
 
 <!-- cucardas -->
-![stable](https://img.shields.io/badge/stability-stable-blue.svg)
+![red](https://img.shields.io/badge/stability-designing-red.svg)
 [![npm-version](https://img.shields.io/npm/v/cast-error.svg)](https://npmjs.org/package/cast-error)
 [![downloads](https://img.shields.io/npm/dm/cast-error.svg)](https://npmjs.org/package/cast-error)
 [![build](https://github.com/codenautas/cast-error/actions/workflows/node.js.yml/badge.svg)](https://github.com/codenautas/cast-error/actions/workflows/node.js.yml)
@@ -107,6 +107,44 @@ try{
     var error = castError.expected(err)
     if(error.code!='ENOENT') throw err;  // code exists in error because is a SystemError
 }
+```
+
+<!--lang:es-->
+
+# Profundizando
+
+## Los casos de uso
+
+Los casos de uso principales de `try/catch` son:
+
+   1. Dejar un registro de un error inesperado del sistema para que luego
+   un programador identifique el problema y corrija el sistema.
+   2. Avisarle al usuario de un problema con sus datos de entrada. 
+   3. Manejar una situación excepcional pero recuperable. 
+
+### Caso 1: registro de errores inesperados
+
+En estos casos el error podría ser de cualquier tipo. 
+Normalmente debería haber un `try/catch` en el ciclo más externo del sistema ().
+## Los tipos
+
+En _Typescript_ no se puede especificar el tipo de la variable en `catch` 
+(no más que `any` o `unkown`). 
+Porque no hay manera de anticipar (con el _Typescript_ actual) de qué tipo
+es el error que puede capturar un `try` (porque eso depende de las funciones
+llamadas dentro del `try` y las que están dentro de esas y así). 
+
+
+
+<!--lang:en--]
+
+# Deepening
+
+## Typesystem
+
+[!--lang:*-->
+
+```ts
 ```
 
 <!--lang:es-->
