@@ -1,6 +1,7 @@
 export declare type Constructor<T> = new (...args: any[]) => T;
 export declare class SystemError extends Error {
-    code: string;
+    code?: string;
+    cause?: Error;
     constructor(message: string);
 }
 export declare function setLogFunction(f: typeof console.error): void;

@@ -125,7 +125,8 @@ Los casos de uso principales de `try/catch` son:
 ### Caso 1: registro de errores inesperados
 
 En estos casos el error podría ser de cualquier tipo. 
-Normalmente debería haber un `try/catch` en el ciclo más externo del sistema ().
+Normalmente debería haber un `try/catch` en el ciclo más externo del sistema
+que registre 
 ## Los tipos
 
 En _Typescript_ no se puede especificar el tipo de la variable en `catch` 
@@ -133,8 +134,6 @@ En _Typescript_ no se puede especificar el tipo de la variable en `catch`
 Porque no hay manera de anticipar (con el _Typescript_ actual) de qué tipo
 es el error que puede capturar un `try` (porque eso depende de las funciones
 llamadas dentro del `try` y las que están dentro de esas y así). 
-
-
 
 <!--lang:en--]
 

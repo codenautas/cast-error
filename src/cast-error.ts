@@ -1,11 +1,11 @@
 export type Constructor<T> = new(...args: any[]) => T;
 
 export class SystemError extends Error{
-    code:string
+    code?:string
+    cause?:Error
     constructor(message:string) {
         super(message)
         this.name = 'SystemError';
-        this.code = 'UNKNOWN';
     }
 }
 

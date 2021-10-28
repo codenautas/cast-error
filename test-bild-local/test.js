@@ -147,4 +147,30 @@ describe("cast-error", function () {
             assert.deepStrictEqual(theLog, [["not an Error in a catch", err]]);
         }
     });
+    if (typeof process != "undefined" && Number(process.versions.node.split('.')[0]) >= 16) {
+        it("cause", function () {
+            return __awaiter(this, void 0, void 0, function () {
+                var error;
+                return __generator(this, function (_a) {
+                    try {
+                        throw new TypeError("a type error");
+                        assert(false, "problem in the design of 'cause' test");
+                    }
+                    catch (err) {
+                        try {
+                            // @ts-ignore
+                            throw new Error("a plain error with cause", { cause: err });
+                            assert(false, "problem in the design of 'cause' test (2)");
+                        }
+                        catch (err2) {
+                            error = castError.expected(err2);
+                            assert.equal(error.message, "a plain error with cause");
+                            assert.equal(error.cause, err);
+                        }
+                    }
+                    return [2 /*return*/];
+                });
+            });
+        });
+    }
 });
