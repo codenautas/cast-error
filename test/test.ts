@@ -103,4 +103,15 @@ describe("cast-error", function(){
             }
         })
     }
+    it("log attributes", function(){
+        var attributes = {code:true,err_num:true,cause:true};
+        type MyGlobalError = Error & {[k in keyof typeof attributes]: any}
+        castError.setLogFunction(function(context:string, error:MyGlobalError){
+            console.log('***********',context);
+            var attr: keyof typeof attributes;
+            for(attr in attributes){
+                console.log(attr,':',error[attr])
+            }
+        })
+    })
 })
