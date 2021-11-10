@@ -1,6 +1,6 @@
 # cast-error
 
-cast Error for use in TypeScript in catch clausule
+cast Error for use in TypeScript in catch clause
 
 
 ![red](https://img.shields.io/badge/stability-designing-red.svg)
@@ -29,15 +29,15 @@ $ npm install cast-error
 The main goal is to have handy way to receive typed Errors y _Typescript_.
 
 In one hand in _Typescript_ when you use `catch(err)` the variable
-`err` is of type `unkown` (formerly `any`). Thats why you cannot
+`err` is of type `unknown` (formerly `any`). That's why you cannot
 write `err.code` for `SystemErrors` (formerly you can but `tsc`
 did not warn you if you make a typo like `err.code_num`)
 
-In the other hand in _Javascript_ you can throw any varialbe
-regardles of its type. You can even throw `null`. Then it is'n
+In the other hand in _Javascript_ you can throw any variable
+regardless of its type. You can even throw `null`. Then it isn't
 safe to write `err.message`.
 
-With **cast-error** this problems are solved in a fancy and eficient
+With **cast-error** this problems are solved in a fancy and efficient
 way.
 
 Instead of writing this:
@@ -47,7 +47,6 @@ Instead of writing this:
 
 
 with **cast-error** you can write:
-
 
 
 ```ts
@@ -74,17 +73,17 @@ try{
 
 The main use cases of `try/catch` are:
 
-   1. To register unexpeted error conditions in a way that the programmers
+   1. To register unexpected error conditions in a way that the programmers
    can later identify and correct the bug.
    2. To warn the users that there is a problem with their input data.
    3. To handle an exceptional and recoverable situation.
 
 
-### Case 1: loggin unexpected errors
+### Case 1: logging unexpected errors
 
-It is posible to hook and centralize the way to log error in every `catch`
+It is possible to hook and centralize the way to log error in every `catch`
 setting the log function with `setLogFunction` and then call `unexpected`
-in the main cycle and in all points where special behaviour is needed.
+in the main cycle and in all points where special behavior is needed.
 
 
 ```ts
@@ -126,8 +125,8 @@ function getStream(name:string){
 
 ### Case 2: Warning users that there is a problem with their input data.
 
-In some cases we need to warn users if there ara problemas with their input data.
-For example if the user wants to delete a file, and the system doesn't find the file it must warn the user.
+In some cases, we need to warn users if there are problemas with their input data.
+For example, if the user wants to delete a file, and the system doesn't find the file it must warn the user.
 
 In Node.js `fs.exists` is deprecated. In the [documentation](https://nodejs.org/dist/latest-v16.x/docs/api/fs.html#fsexistspath-callback)
 is clear that the way is to use the file and capture the error to know if
@@ -157,18 +156,18 @@ function openFileAndProcess(filename:string){
 ```
 
 
-There are many cavets to observ:
-   1. If the system is a tipical web aplication is razonable to think that
-   there is a table with te names of the files that can be delete by the user.
-   If opening (or deleting) a file that is supouse to exists, any error is
+There are many caveats to observe:
+   1. If the system is a typical web application is reasonable to think that
+   there is a table with the names of the files that can be delete by the user.
+   If opening (or deleting) a file that is suppose to exists, any error is
    an unexpected error. And, because of that, is part of the Case 1.
-   2. Not all programs are the tipical web application. A program can be
-   a command line one or an administration web application. In these cases
+   2. Not all programs are the typical web application. A program can be
+   a command line one or an administration web application. In these cases,
    the _file table_ may be not exists.
-   3. In any case, if it is a web application is mandatory to take care of
-   attackers. So in the error messages the system should'n send more
+   3. In any case if it is a web application is mandatory to take care of
+   attackers. So in the error messages the system shouldn't send more
    information that what the user can know.
-   4. If there no validations to a white list there be other validations:
+   4. If there no validations to a whitelist there be other validations:
    the folder, the type of file (or its extension), and the logical ownership of the file.
 
 
@@ -179,9 +178,7 @@ _[... in progress ...]_
 
 
 
-# Deepening
-
-## Typesystem
+## Type system
 
 
 ```ts
