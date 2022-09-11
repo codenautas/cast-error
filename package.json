@@ -23,30 +23,6 @@
             "text-summary"
         ]
     },
-    "x-nyc": {
-        "extension": [
-            ".js"
-        ],
-        "exclude": [
-            "**/*.d.ts",
-            "src/test"
-        ],
-        "include": [
-            "lib/*.js"
-        ],
-        "x-require": [
-            "ts-node/register"
-        ],
-        "reporter": [
-            "html",
-            "lcov",
-            "text-summary"
-        ],
-        "sourceMap": true,
-        "instrument": true,
-        "all": true,
-        "check-coverage": true
-    },
     "devDependencies": {
         "@types/node": "^16.11.7",
         "@types/mocha": "^9.0.0",

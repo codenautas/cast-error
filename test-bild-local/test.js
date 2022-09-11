@@ -173,4 +173,14 @@ describe("cast-error", function () {
             });
         });
     }
+    it("log attributes", function () {
+        var attributes = { code: true, err_num: true, cause: true };
+        castError.setLogFunction(function (context, error) {
+            console.log('***********', context);
+            var attr;
+            for (attr in attributes) {
+                console.log(attr, ':', error[attr]);
+            }
+        });
+    });
 });
