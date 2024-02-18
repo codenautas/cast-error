@@ -4,6 +4,7 @@
         "sourceMap": true,
         "outDir": "../lib",
         "module": "umd",
+        "moduleResolution": "node",
         "strict": true,
         "inlineSourceMap": false,
         "noImplicitAny": true,

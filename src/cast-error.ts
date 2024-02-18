@@ -21,9 +21,10 @@ export function expected<T extends Error = SystemError>(err:unknown, constructor
         return err as T;
     }
     logFunction('not an Error in a catch',err);
-    var message:string = err == null ? "null error in catch" : ( 
+    var message:string = err == null ? "null error in catch" : 
+    // @ts-ignore
+    ( 
         typeof err == "string" ? err : (
-            // @ts-ignore
             typeof err == "object" && "message" in err ? err.message : err
         )
     ).toString();
