@@ -1,7 +1,7 @@
 {
     "name": "cast-error",
     "description": "cast Error for use in TypeScript in catch clausule",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "repository": "codenautas/cast-error",
     "files": [
         "lib",
@@ -24,10 +24,10 @@
         ]
     },
     "devDependencies": {
-        "@types/node": "^20.11.19",
-        "@types/mocha": "^10.0.6",
-        "mocha": "^10.3.0",
-        "nyc": "^15.1.0",
-        "typescript": "^5.3.3"
+        "@types/node": "^24.0.3",
+        "@types/mocha": "^10.0.10",
+        "mocha": "^11.7.0",
+        "nyc": "^17.1.0",
+        "typescript": "^5.8.3"
     }
 }
