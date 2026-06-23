@@ -11,7 +11,8 @@
   "types": "lib/cast-error.d.ts",
   "scripts": {
     "prepare": "tsc -p src",
-    "test": "tsc -p src && tsc -p test && nyc mocha test-bild-local/test"
+    "test": "tsc -p src && tsc -p test && nyc mocha test-bild-local/test",
+    "test-ci": "npm test"
   },
   "nyc": {
     "exclude": [
@@ -35,5 +36,11 @@
     "nyc": "^18.0.0",
     "qa-control": "^0.6.16",
     "typescript": "^5.9.3"
+  },
+  "qa-control": {
+    "profile": "minimum",
+    "run-in": "both",
+    "type": "lib",
+    "gha": "all"
   }
 }

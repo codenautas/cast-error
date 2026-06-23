@@ -11,12 +11,11 @@ cast Error for use in TypeScript in catch clause
 [!--lang:*-->
 
 <!-- cucardas -->
-![stability](https://img.shields.io/badge/stability-extending-orange.svg)
 [![npm-version](https://img.shields.io/npm/v/cast-error.svg)](https://npmjs.org/package/cast-error)
 [![downloads](https://img.shields.io/npm/dm/cast-error.svg)](https://npmjs.org/package/cast-error)
-[![build](https://github.com/codenautas/cast-error/actions/workflows/node.js.yml/badge.svg)](https://github.com/codenautas/cast-error/actions/workflows/node.js.yml)
-[![coverage](https://img.shields.io/coveralls/codenautas/cast-error/master.svg)](https://coveralls.io/r/codenautas/cast-error)
-[![outdated-deps](https://img.shields.io/github/issues-search/codenautas/cast-error?color=9cf&label=outdated-deps&query=is%3Apr%20author%3Aapp%2Fdependabot%20is%3Aopen)](https://github.com/codenautas/cast-error/pulls/app%2Fdependabot)
+[![build](https://github.com/codenautas/cast-error/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/codenautas/cast-error/actions/workflows/build-and-test.yml)
+[![security](https://socket.dev/api/badge/npm/package/cast-error)](https://socket.dev/npm/package/cast-error)
+[![qa-control](https://github.com/codenautas/cast-error/actions/workflows/qa-control.yml/badge.svg)](https://github.com/codenautas/cast-error/actions/workflows/qa-control.yml)
 
 <!--multilang buttons-->
 
