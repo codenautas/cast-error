@@ -1,7 +1,9 @@
 {
     "name": "cast-error",
     "description": "cast Error for use in TypeScript in catch clausule",
-    "version": "0.1.3",
+    "version": "3.0.0-beta.1",
+    "author": "Emilio Platzer <emilioplatzer@googlegroups.com>",
+    "license": "MIT",
     "repository": "codenautas/cast-error",
     "files": [
         "lib",
