@@ -16,14 +16,14 @@ export function setLogFunction(f:typeof console.error){
 }
 
 export function expected<T extends Error = SystemError>(err:unknown, constructor?:Constructor<T>):T{
-    if(err instanceof Error){ 
+    if(err instanceof Error){
         if(constructor != null && !(err instanceof constructor)) logFunction(`not a "${constructor.name}" in a catch:`,err);
         return err as T;
     }
     logFunction('not an Error in a catch',err);
-    var message:string = err == null ? "null error in catch" : 
+    var message:string = err == null ? "null error in catch" :
     // @ts-ignore
-    ( 
+    (
         typeof err == "string" ? err : (
             typeof err == "object" && "message" in err ? err.message : err
         )

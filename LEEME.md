@@ -42,16 +42,16 @@ $ npm install cast-error
 
 ## Objetivo principal
 
-Tener un mecanismo en _Typescript_ que reciba errores tipados. 
+Tener un mecanismo en _Typescript_ que reciba errores tipados.
 
-Por un lado en _Typescript_ la forma `catch(err)` implica que `err` 
+Por un lado en _Typescript_ la forma `catch(err)` implica que `err`
 es o bien de tipo `unknown` (comprtamiento actual) o bien de tipo `any`
 (comportamiento anterior). Eso hace que o bien no se puede escribir
 `err.code` o bien no detecta el error de tipeo al escribir `err.code_num`.
 
 Por otro lado en _Javascript_ se puede hacer throw de una variable
 cualquiera (aunque no sea un objeto de la clase Error), incluso se puede
-hacer `throw null`. Entonces no es seguro escribir `err.message`. 
+hacer `throw null`. Entonces no es seguro escribir `err.message`.
 
 Con **cast-error** se solucionan ambos problemas de una manera cómoda,
 elegante y eficiente:
@@ -65,11 +65,11 @@ En vez de escribir:
 The main goal is to have handy way to receive typed Errors y _Typescript_.
 
 In one hand in _Typescript_ when you use `catch(err)` the variable
-`err` is of type `unknown` (formerly `any`). That's why you cannot 
+`err` is of type `unknown` (formerly `any`). That's why you cannot
 write `err.code` for `SystemErrors` (formerly you can but `tsc`
 did not warn you if you make a typo like `err.code_num`)
 
-In the other hand in _Javascript_ you can throw any variable 
+In the other hand in _Javascript_ you can throw any variable
 regardless of its type. You can even throw `null`. Then it isn't
 safe to write `err.message`.
 
@@ -84,7 +84,7 @@ Instead of writing this:
 
 <!--lang:es-->
 
-con **cast-error** eso se puede escribir así: 
+con **cast-error** eso se puede escribir así:
 
 <!--lang:en--]
 
@@ -124,8 +124,8 @@ Los casos de uso principales de `try/catch` son:
 
    1. Dejar un registro de un error inesperado del sistema para que luego
    un programador identifique el problema y corrija el sistema.
-   2. Avisarle al usuario de un problema con sus datos de entrada. 
-   3. Manejar una situación excepcional pero recuperable. 
+   2. Avisarle al usuario de un problema con sus datos de entrada.
+   3. Manejar una situación excepcional pero recuperable.
 
 <!--lang:en--]
 
@@ -144,9 +144,9 @@ The main use cases of `try/catch` are:
 
 Normalmente debería haber un `try/catch` en el ciclo más externo del sistema
 que registre todos los errores que no se hayan podido resolver para poder
-investigarlos en el futuro (detectar posibles bugs, etc). 
+investigarlos en el futuro (detectar posibles bugs, etc).
 Si el programa no es un servicio backend y es una herramienta tipo CLI
-de un solo uso, el `try/catch` puede estar al final de todo. 
+de un solo uso, el `try/catch` puede estar al final de todo.
 También podría usarse un `hook` de `node.js` (suponiendo que no está en el
 navegador, donde de todos modos es difícil dejar registro de los errores).
 
@@ -154,7 +154,7 @@ A veces hay una función interna a la que queremos agregarle un `try/catch`
 para que en caso de error, poder registrar el valor de ciertas variables
 con las cuales obtener más contexto. No se debe olvidar de volver lanzar
 el error `throw error` en esos casos para no fallar en silencio dentro
-del programa principal. 
+del programa principal.
 
 En estos casos se puede usar `castError.unexpected` junto a `castError.setLogginFucntion' para registrar el error donde ocurra:
 
@@ -213,24 +213,24 @@ almacenó? ¿Cómo contestar si ese archivo no se encuentra?
 
 En principio falta contexto, ¿lo subió al servidor desde una página diseñada
 para tal cosa? ¿o es un "comando" que se corre en la máquina y el nombre de
-archivo lo pasaron como parámetro?. 
+archivo lo pasaron como parámetro?.
 
 Si vamos a la documentación de [`fs.exists`](https://nodejs.org/dist/latest-v16.x/docs/api/fs.html#fsexistspath-callback) está declarada como
 _deprecated_ diciendo no pregunte si existe, haga lo que tenga que hacer
-con el archivo, que si no existe, le vamos a avisar con una excepción. 
-Tan _deprecated_ está que no existe su versión en [`fs/promises`](https://nodejs.org/dist/latest-v16.x/docs/api/fs.html#file-system). 
+con el archivo, que si no existe, le vamos a avisar con una excepción.
+Tan _deprecated_ está que no existe su versión en [`fs/promises`](https://nodejs.org/dist/latest-v16.x/docs/api/fs.html#file-system).
 Eso lo que significa es que hay que intentar hacer algo (ej: abrir el archivo) y estar atento a la posible excepción:
 
 <!--lang:en--]
 
 ### Case 2: Warning users that there is a problem with their input data.
 
-In some cases, we need to warn users if there are problemas with their input data. 
-For example, if the user wants to delete a file, and the system doesn't find the file it must warn the user. 
+In some cases, we need to warn users if there are problemas with their input data.
+For example, if the user wants to delete a file, and the system doesn't find the file it must warn the user.
 
-In Node.js `fs.exists` is deprecated. In the [documentation](https://nodejs.org/dist/latest-v16.x/docs/api/fs.html#fsexistspath-callback) 
+In Node.js `fs.exists` is deprecated. In the [documentation](https://nodejs.org/dist/latest-v16.x/docs/api/fs.html#fsexistspath-callback)
 is clear that the way is to use the file and capture the error to know if
-the file was not found: 
+the file was not found:
 
 [!--lang:*-->
 
@@ -261,19 +261,19 @@ function openFileAndProcess(filename:string){
 Hay varias cosas que se pueden observar:
    1. Si el archivo fue subido desde una típica aplicación web es razonable
    suponer que existe una base de datos donde haya una tabla con los nombres
-   de los archivos subidos y es ahí donde se debería validar esto. 
-   En este caso los errores del catch serían inesperados (_unexpectd_) 
+   de los archivos subidos y es ahí donde se debería validar esto.
+   En este caso los errores del catch serían inesperados (_unexpectd_)
    y deberían considearse en el caso 1.
    2. No todo es una típica aplicación web. El sistema podría ser una consola
    de administración del serivod (podría ser un comando para ejecutar
    directamente en la consola del sistema operativo o una aplicación
    web de administración del servidor): en esos casos tiene sentido pensar
-   que podría no existir esa tabla. 
+   que podría no existir esa tabla.
    3. Cualquiera sea el caso, si se trata de una aplicación web, hay que
-   tener cuidado con la cantidad de información que se le da al usuario. 
+   tener cuidado con la cantidad de información que se le da al usuario.
    Hay que recordar que siempre en una aplicación web tenemos que contemplar
-   la posibilidad de que el usuario sea un atacante, y no darle más 
-   información que la que puede tener por los medios tradicionales. 
+   la posibilidad de que el usuario sea un atacante, y no darle más
+   información que la que puede tener por los medios tradicionales.
    4. Si se va a intentar abrir un archivo en forma directa (sin validar
    el nombre en una _whitelist_) hay que tener cuidado de no permitir
    abrir archivos que el usuario no debería ver (archivos de configuración, del sistema, de otras carpetas o de otros usuarios).
@@ -282,21 +282,21 @@ Hay varias cosas que se pueden observar:
 
 There are many caveats to observe:
    1. If the system is a typical web application is reasonable to think that
-   there is a table with the names of the files that can be delete by the user. 
-   If opening (or deleting) a file that is suppose to exists, any error is 
+   there is a table with the names of the files that can be delete by the user.
+   If opening (or deleting) a file that is suppose to exists, any error is
    an unexpected error. And, because of that, is part of the Case 1.
    2. Not all programs are the typical web application. A program can be
    a command line one or an administration web application. In these cases,
-   the _file table_ may be not exists. 
+   the _file table_ may be not exists.
    3. In any case if it is a web application is mandatory to take care of
-   attackers. So in the error messages the system shouldn't send more 
+   attackers. So in the error messages the system shouldn't send more
    information that what the user can know.
    4. If there no validations to a whitelist there be other validations:
-   the folder, the type of file (or its extension), and the logical ownership of the file. 
+   the folder, the type of file (or its extension), and the logical ownership of the file.
 
 <!--lang:es-->
 
-### Caso 3: Manejar una situación excepcional pero recuperable. 
+### Caso 3: Manejar una situación excepcional pero recuperable.
 
 _[... en proceso ...]_
 
@@ -313,11 +313,11 @@ _[... in progress ...]_
 
 ## Los tipos
 
-En _Typescript_ no se puede especificar el tipo de la variable en `catch` 
-(no más que `any` o `unkown`). 
+En _Typescript_ no se puede especificar el tipo de la variable en `catch`
+(no más que `any` o `unkown`).
 Porque no hay manera de anticipar (con el _Typescript_ actual) de qué tipo
 es el error que puede capturar un `try` (porque eso depende de las funciones
-llamadas dentro del `try` y las que están dentro de esas y así). 
+llamadas dentro del `try` y las que están dentro de esas y así).
 
 <!--lang:en--]
 

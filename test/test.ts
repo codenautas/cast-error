@@ -86,7 +86,7 @@ describe("cast-error", function(){
         }
     })
     if(typeof process != "undefined" && Number(process.versions.node.split('.')[0])>=16){
-        it("cause",async function(){ 
+        it("cause",async function(){
             try{
                 throw new TypeError("a type error");
                 assert(false, "problem in the design of 'cause' test")
