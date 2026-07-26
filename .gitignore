@@ -105,3 +105,6 @@ dist
 
 local-*
 *-local.*
+
+# in this lib is all generated
+lib/
