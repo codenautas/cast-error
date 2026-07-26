@@ -2,7 +2,7 @@
 
 module.exports = [
     {
-        ignores: ["dist/**", "lib/**", "test-bild-local/**"] // here lib is constructed
+        ignores: ["dist/**", "lib/**", "test-build-local/**"] // here lib is constructed
     },
     {
         languageOptions: {

@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "../test-bild-local",
+        "outDir": "../test-build-local",
         "strict": true,
         "noImplicitAny": true
     }

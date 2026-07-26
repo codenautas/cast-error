@@ -11,12 +11,12 @@
   "types": "lib/cast-error.d.ts",
   "scripts": {
     "prepare": "tsc -p src",
-    "test": "tsc -p src && tsc -p test && mocha test-bild-local/test",
-    "test-ci": "tsc -p src && tsc -p test && c8 mocha test-bild-local/test"
+    "test": "tsc -p src && tsc -p test && mocha test-build-local/test",
+    "test-ci": "tsc -p src && tsc -p test && c8 mocha test-build-local/test"
   },
   "c8": {
     "exclude": [
-      "test-bild-local"
+      "test-build-local"
     ],
     "reporter": [
       "html",
