@@ -26,10 +26,10 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
-    "@types/node": "^26.1.1",
-    "mocha": "^12.0.0-rc.5",
+    "@types/node": "^26.6.5",
+    "mocha": "^12.0.3",
     "c8": "^12.0.0",
-    "qa-control": "^0.8.1",
+    "qa-control": "^0.12.2",
     "typescript": "^5.9.3"
   },
   "qa-control": {
@@ -38,8 +38,6 @@
     "type": "lib",
     "coverage": 100,
     "gha": "all",
-    "silenced": [
-      "first_lines_does_not_match_in_file_1"
-    ]
+    "sonar": true
   }
 }

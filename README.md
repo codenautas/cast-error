@@ -7,7 +7,7 @@ cast Error for use in TypeScript in catch clause
 [![downloads](https://img.shields.io/npm/dm/cast-error.svg)](https://npmjs.org/package/cast-error)
 [![build](https://github.com/codenautas/cast-error/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/codenautas/cast-error/actions/workflows/build-and-test.yml)
 [![coverage](https://img.shields.io/coveralls/codenautas/cast-error/master.svg)](https://coveralls.io/r/codenautas/cast-error)
-[![security](https://socket.dev/api/badge/npm/package/cast-error)](https://socket.dev/npm/package/cast-error)
+[![sonar](https://sonarcloud.io/api/project_badges/measure?project=codenautas_cast-error&metric=alert_status)](https://sonarcloud.io/summary/overall?id=codenautas_cast-error)
 [![qa-control](https://github.com/codenautas/cast-error/actions/workflows/qa-control.yml/badge.svg)](https://github.com/codenautas/cast-error/actions/workflows/qa-control.yml)
 
 
