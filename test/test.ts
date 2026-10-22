@@ -1,6 +1,6 @@
 import * as castError from "../lib/cast-error";
-import * as assert from "assert";
-import {promises as fs} from "fs";
+import * as assert from "node:assert";
+import {promises as fs} from "node:fs";
 
 describe("cast-error", function(){
     it("detects error type",async function(){
@@ -12,9 +12,9 @@ describe("cast-error", function(){
             assert.equal(error.code, "ENOENT")
         }
     })
-    var theLog: any[] = [];
+    var theLog: any[] = []; // eslint-disable-line @typescript-eslint/no-explicit-any
     before(()=>{
-        castError.setLogFunction((...args:any[])=>theLog.push(args));
+        castError.setLogFunction((...args:any[])=>theLog.push(args));  // eslint-disable-line @typescript-eslint/no-explicit-any
     })
     beforeEach(()=>{
         theLog = [];
@@ -43,8 +43,7 @@ describe("cast-error", function(){
     })
     it("warns about unexpected and different non error", function(){
         try{
-            throw "message instead error";
-            assert(false, "problem in test. throw must throw error but get ")
+            throw "message instead error"; // eslint-disable-line no-throw-literal
         }catch(err){
             var error = castError.unexpected(err);
             assert.equal(error.name, "Error");
@@ -54,8 +53,7 @@ describe("cast-error", function(){
     })
     it("warns about null error", function(){
         try{
-            throw null;
-            assert(false, "problem in test. throw must throw error but get ")
+            throw null; // eslint-disable-line no-throw-literal
         }catch(err){
             var error = castError.expected(err);
             assert.equal(error.name, "Error");
@@ -65,8 +63,7 @@ describe("cast-error", function(){
     })
     it("warns about duck typed error", function(){
         try{
-            throw {message:'duck-typed error'};
-            assert(false, "problem in test. throw must throw error but get ")
+            throw {message:'duck-typed error'}; // eslint-disable-line no-throw-literal
         }catch(err){
             var error = castError.unexpected(err);
             assert.equal(error.name, "Error");
@@ -76,8 +73,7 @@ describe("cast-error", function(){
     })
     it("warns about other type of error", function(){
         try{
-            throw 42;
-            assert(false, "problem in test. throw must throw error but get ")
+            throw 42; // eslint-disable-line no-throw-literal
         }catch(err){
             var error = castError.expected(err, castError.SystemError);
             assert.equal(error.name, "SystemError");
@@ -85,17 +81,15 @@ describe("cast-error", function(){
             assert.deepStrictEqual(theLog, [["not an Error in a catch", err]])
         }
     })
-    if(typeof process != "undefined" && Number(process.versions.node.split('.')[0])>=16){
-        it("cause",async function(){
+    if(typeof process !== "undefined" && Number(process.versions.node.split('.')[0])>=16){
+        it("cause",function(){
             try{
                 throw new TypeError("a type error");
-                assert(false, "problem in the design of 'cause' test")
             }catch(err){
                 try{
                     // @ts-ignore
                     throw new Error("a plain error with cause", {cause: err});
-                    assert(false, "problem in the design of 'cause' test (2)")
-                }catch(err2){
+                }catch(err2){ // eslint-disable-line unicorn/catch-error-name
                     var error = castError.expected(err2)
                     assert.equal(error.message, "a plain error with cause");
                     assert.equal(error.cause, err);
@@ -105,7 +99,7 @@ describe("cast-error", function(){
     }
     it("log attributes", function(){
         var attributes = {code:true,err_num:true,cause:true};
-        type MyGlobalError = Error & {[k in keyof typeof attributes]: any}
+        type MyGlobalError = Error & {[k in keyof typeof attributes]: any}  // eslint-disable-line @typescript-eslint/no-explicit-any
         castError.setLogFunction(function(context:string, error:MyGlobalError){
             console.log('***********',context);
             var attr: keyof typeof attributes;

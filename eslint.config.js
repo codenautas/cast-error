@@ -1,8 +1,24 @@
 "use strict";
 
+const sonarjs = require("eslint-plugin-sonarjs");
+// eslint-plugin-unicorn is ESM only: require() returns the module namespace and the plugin is its default export
+const unicorn = require("eslint-plugin-unicorn").default;
+
+const tseslint = require("typescript-eslint");
+
 module.exports = [
     {
         ignores: ["dist/**", "lib/**", "test-build-local/**"] // here lib is constructed
+    },
+    {
+        // SonarQube rules (the ones silenced in the code)
+        plugins: { sonarjs, unicorn },
+        rules: {
+            "sonarjs/no-hardcoded-passwords": 2,
+            "sonarjs/no-nested-conditional": 2,
+            "sonarjs/todo-tag": 2,
+            "unicorn/no-this-assignment": 2
+        }
     },
     {
         languageOptions: {
@@ -87,7 +103,7 @@ module.exports = [
             "no-unused-expressions": 2,
             "no-useless-call": 2,
             "no-useless-concat": 2,
-            "no-void": 2,
+            "no-void": [2, {allowAsStatement: true}],
             "no-warning-comments": 0,
             "no-with": 2,
             "radix": 2,
@@ -202,6 +218,36 @@ module.exports = [
             "prefer-spread": 0,
             "prefer-template": 0,
             "require-yield": 0
+        }
+    },
+    {
+        files: ["**/*.ts", "**/*.mts", "**/*.cts"],
+        languageOptions: {
+            parser: tseslint.parser,
+            parserOptions: {
+                projectService: true,
+                tsconfigRootDir: __dirname
+            },
+            sourceType: "module"
+        },
+        plugins: {
+            "@typescript-eslint": tseslint.plugin
+        },
+        rules: {
+            // JavaScript rules with false positives in TypeScript
+            "no-redeclare": 0,
+            "no-unused-expressions": 0,
+            "strict": 0,
+            "@typescript-eslint/no-unused-expressions": 2,
+
+            // Types and promises
+            "@typescript-eslint/no-explicit-any": 2,
+            "@typescript-eslint/no-floating-promises": 2,
+            "@typescript-eslint/promise-function-async": 2,
+            "@typescript-eslint/await-thenable": 2,
+            "@typescript-eslint/require-await": 2,
+            "@typescript-eslint/return-await": 2,
+            "@typescript-eslint/no-misused-promises": 2
         }
     }
 ];

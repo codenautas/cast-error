@@ -29,8 +29,11 @@
     "@types/node": "^26.6.5",
     "mocha": "^12.0.3",
     "c8": "^12.0.0",
-    "qa-control": "^0.12.2",
-    "typescript": "^5.9.3"
+    "eslint-plugin-sonarjs": "^4.2.2",
+    "eslint-plugin-unicorn": "^78.0.0",
+    "qa-control": "^0.14.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.0"
   },
   "qa-control": {
     "profile": "default",
@@ -38,6 +41,9 @@
     "type": "lib",
     "coverage": 100,
     "gha": "all",
-    "sonar": true
+    "sonar": true,
+    "silenced": [
+      "eslint_warnings_in_file_1"
+    ]
   }
 }

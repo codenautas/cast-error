@@ -1,4 +1,4 @@
-export type Constructor<T> = new(...args: any[]) => T;
+export type Constructor<T> = new(...args: any[]) => T; // eslint-disable-line @typescript-eslint/no-explicit-any
 
 export class SystemError extends Error{
     code?:string
@@ -9,7 +9,7 @@ export class SystemError extends Error{
     }
 }
 
-var logFunction = console.error;
+let logFunction = console.error;
 
 export function setLogFunction(f:typeof console.error){
     logFunction = f;
@@ -21,11 +21,11 @@ export function expected<T extends Error = SystemError>(err:unknown, constructor
         return err as T;
     }
     logFunction('not an Error in a catch',err);
-    var message:string = err == null ? "null error in catch" :
+    const message:string = err == null ? "null error in catch" :
     // @ts-ignore
     (
-        typeof err == "string" ? err : (
-            typeof err == "object" && "message" in err ? err.message : err
+        typeof err === "string" ? err : ( // eslint-disable-line sonarjs/no-nested-conditional
+            typeof err === "object" && "message" in err ? err.message : err // eslint-disable-line sonarjs/no-nested-conditional
         )
     ).toString();
     // @ts-ignore
